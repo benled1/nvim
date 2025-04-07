@@ -1,4 +1,3 @@
-
 ----------------------
 -- Misc --
 ----------------------
@@ -49,6 +48,19 @@ require("lazy").setup({
 	"nvim-tree/nvim-web-devicons",
 	"MunifTanjim/nui.nvim",
       },
+    },
+    {
+	'nvim-lualine/lualine.nvim',
+	dependencies = { 'nvim-tree/nvim-web-devicons' }
+    },
+    {
+    "williamboman/mason.nvim"
+    },
+    {
+    "williamboman/mason-lspconfig.nvim",
+    },
+    {
+    "neovim/nvim-lspconfig"
     }
   },
   -- Configure any other settings here. See the documentation for more details.
@@ -84,7 +96,21 @@ config.setup({
 ----------------------
 -- Web Dev Icons --
 ----------------------
-require("nvim-web-devicons").setup()
+require("nvim-web-devicons").setup("test")
+
+----------------------
+-- LuaLine --
+----------------------
+require("lualine").setup({options = {theme = 'dracula'}})
+
+----------------------
+-- Mason --
+----------------------
+require("mason").setup()
+require("mason-lspconfig").setup({ensure_installed = {"lua_ls", "pyright"}})
+lsp_config = require("lspconfig")
+lsp_config.pyright.setup({})
+lsp_config.lua_ls.setup({})
 
 ----------------------
 -- KeyMappings --
